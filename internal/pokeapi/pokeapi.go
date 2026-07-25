@@ -16,3 +16,17 @@ type RespShallowLoc struct {
 		URL  string `json:"url"`
 	} `json:"results"`
 }
+
+// Response - Explore Location
+// this query returns other data which we are ignoring for now
+type RespExploreLoc struct {
+	Location struct {
+		Name string `json:"name"`
+		URL  string `json:"url"`
+	} `json:"location"`
+	PokemonEncounters []struct {
+		Pokemon struct {
+			Name string `json:"name"`
+		} `json:"pokemon"`
+	} `json:"pokemon_encounters"`
+}

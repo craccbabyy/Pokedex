@@ -11,7 +11,7 @@ import (
 type cliCommand struct {
 	name   string
 	desc   string
-	callbk func(*config) error
+	callbk func(*config, ...string) error // added for args to be passed
 }
 
 type config struct {
@@ -37,16 +37,21 @@ func startREPL(cfg *config) {
 		if len(cleaned) == 0 {
 			continue
 		}
-		cmdName := cleaned[0] // check for "exit commands" using first word
+		cmdName := cleaned[0]
 
-		// now we have the command, we need to:
+		// adding arguments
+		args := []string{}
+		if len(cleaned) > 1 {
+			args = cleaned[1:]
+		}
+
 		// check if its in the MAP of SUPPORTED COMMANDS!
 		cmd, exists := supportedCommands[cmdName]
 		if !exists {
 			fmt.Printf("Unknown command: %v\n", rawInput)
 			continue
 		}
-		err := cmd.callbk(cfg)
+		err := cmd.callbk(cfg, args...) // added args to be passed
 		if err != nil {
 			fmt.Printf("Error executing %s: %v\n", cmd.name, err)
 		}

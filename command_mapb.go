@@ -13,7 +13,7 @@ func init() { // func auto runs at start
 	}
 }
 
-func commandMapb(cfg *config) error { // scroll back/prev 20 locations
+func commandMapb(cfg *config, args ...string) error { // scroll back/prev 20 locations
 	if cfg.PreviousURL == nil { // if on first page
 		return errors.New("you're on the first page")
 	}

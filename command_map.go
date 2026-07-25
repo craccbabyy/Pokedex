@@ -27,7 +27,7 @@ func init() { // func auto runs at start
 	}
 }
 
-func commandMap(cfg *config) error { // scroll forward/next 20 locations
+func commandMap(cfg *config, args ...string) error { // scroll forward/next 20 locations
 	locationsResp, err := cfg.pokeapiClient.ListLocations(cfg.NextURL)
 	if err != nil {
 		return err
