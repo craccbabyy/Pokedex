@@ -16,8 +16,9 @@ type cliCommand struct {
 
 type config struct {
 	pokeapiClient pokeapi.Client
-	NextURL       *string // url for next 20 locations
-	PreviousURL   *string // url for last 20 locations
+	NextURL       *string                    // url for next 20 locations
+	PreviousURL   *string                    // url for last 20 locations
+	caughtPokemon map[string]pokeapi.Pokemon //
 }
 
 func startREPL(cfg *config) {
